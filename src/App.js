@@ -9,21 +9,27 @@ class App extends React.Component {
       todoItems: [
         { todo: 'water plants', completed: false, id: 1 },
         { todo: 'cook lunch', completed: false, id: 2 }
-      ]
+      ],
+      text: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleComplete = this.handleComplete.bind(this);
-    // this.handleDelete = this.handleComplete.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault()
     this.setState(prevState => ({ 
-      todoItems: [...prevState.todoItems, {todo: event.target.value, completed: false, id: uuid()}]
+      todoItems: [...prevState.todoItems, {todo: this.state.text, completed: false, id: uuid()}]
     }))
-    console.log(FormData)
+    this.setState({ text: '' })
   }
+
+  onChange = (e) => {
+    this.setState({
+      text: [e.target.value]
+    })
+  };
 
   // Function to toggle completed value
   // handleComplete() {
@@ -31,9 +37,8 @@ class App extends React.Component {
   // }
 
   // function to delete object from state Array
-  // handleDelete() {
-
-  // }
+  handleDelete = () => {
+  };
 
   render() {
     return (
@@ -44,8 +49,10 @@ class App extends React.Component {
         <form type='submit' onSubmit={this.handleSubmit}>
           <input
             type='text'
+            value={this.state.text}
             placeholder='What do you need to do?'
             aria-label='Todo Item'
+            onChange={this.onChange}
           />
           <button>Add Todo</button>
         </form>

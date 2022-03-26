@@ -17,7 +17,8 @@ class AddTodoForm extends React.Component {
         <form>
           <input
             type='text'
-            placeholder='type in your todo here'
+            value='text'
+            placeholder='type in your to-do here'
             aria-label='Todo Item'
           />
           <button type='submit' onSubmit={this.handleSubmit}>Add Todo</button>
