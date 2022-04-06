@@ -14,6 +14,7 @@ class App extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     // this.handleComplete = this.handleComplete.bind(this);
   }
 
@@ -27,17 +28,21 @@ class App extends React.Component {
 
   onChange = (e) => {
     this.setState({
-      text: [e.target.value]
+      text: e.target.value //for some reason I had this in brackets and that was messing things up
     })
   };
 
   // Function to toggle completed value
   // handleComplete() {
 
-  // }
-
-  // function to delete object from state Array
-  handleDelete = () => {
+  handleDelete(e) {
+    e.preventDefault()
+    const lessTodos = this.state.todoItems.filter(id => id !== e
+    )
+    console.log(e)
+    this.setState({
+      todoItems:  lessTodos
+    });
   };
 
   render() {
